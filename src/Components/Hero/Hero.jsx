@@ -1,7 +1,9 @@
+import CountUp from "react-countup";
+
 const Hero = () => {
     return (
-        <div className="flex flex-col text-center items-center justify-center py-20 bg-gray-100">
-            <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
+        <div className="flex   flex-col text-center items-center justify-center py-20 bg-gray-100">
+            <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-transparent bg-clip-text">
                 Welcome to BOLGAA
             </h2>
             <p className="text-xl w-4/5 leading-relaxed text-center text-gray-700 mb-10">
@@ -19,7 +21,9 @@ const Hero = () => {
                     Subscribe
                 </button>
             </div>
+   
         </div>
+        
     );
 };
 
