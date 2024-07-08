@@ -1,16 +1,33 @@
 
 import { Link } from 'react-router-dom';
 import img from '../../assets/login.svg'
+import { useContext } from 'react';
+import { Authcontext } from '../../Auth/Authprovider';
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 
 
 const Login = () => {
+  const {login}  = useContext(Authcontext)
 
     const handleLogin = event =>{
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
+        // login func call
+        login(email , password)
+        .then(res => {
+          console.log(res.user)
+          toast.success("Login Success !", {
+            position: "top-center"
+          });
+        })
+        .catch(err => {
+          console.log(err)
+        })
+
     }    
 
 
@@ -50,7 +67,7 @@ const Login = () => {
             <button className='btn btn-ghost'>Github</button>
             </div>
 
-            <p className='my-4 text-center'>New to <span className='font-semibold'>Blogaa ?</span> <Link to='/register' className='link mx-2  text-orange-600'>Register</Link></p>
+            <p className='my-4 text-center'>New to <span className='font-semibold'>Blogaa ?</span> <Link to='/register' className='link mx-2  text-indigo-600'>Register</Link></p>
           </div>
         </div>
       </div>

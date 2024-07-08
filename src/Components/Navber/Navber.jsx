@@ -1,9 +1,16 @@
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { Authcontext } from "../../Auth/Authprovider";
+import defaultImg from '../../assets/avater.svg';
+import { toast } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Navbar = () => {
-  const getLinkStyles = (isActive) => ({
+  const { user, logOut } = useContext(Authcontext);
+
+  const getLinkStyles = ({ isActive }) => ({
     color: isActive ? "white" : "gray",
-    backgroundColor: isActive ? "Indigo" : "transparent",
+    backgroundColor: isActive ? "#3730A3" : "transparent",
     padding: "0.5rem 1rem",
     borderRadius: "0.375rem",
     textDecoration: "none",
@@ -12,32 +19,43 @@ const Navbar = () => {
   const links = (
     <>
       <li>
-        <NavLink to="/" style={({ isActive }) => getLinkStyles(isActive)}>
+        <NavLink to="/" style={getLinkStyles}>
           Home
         </NavLink>
       </li>
       <li>
-        <NavLink to="/post-blog" style={({ isActive }) => getLinkStyles(isActive)}>
-          Post Blog
-        </NavLink>
+        <NavLink to="/post-blog" style={getLinkStyles}>Post Blog</NavLink>
       </li>
-      <li>
-        <NavLink to="/my-blogs" style={({ isActive }) => getLinkStyles(isActive)}>
-          My Blogs
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/register" style={({ isActive }) => getLinkStyles(isActive)}>
-          Register
-        </NavLink>
-      </li>
-      <li>
-        <NavLink to="/login" style={({ isActive }) => getLinkStyles(isActive)}>
-          Login
-        </NavLink>
-      </li>
+      {user ? (
+        <li>
+          <NavLink to="/my-blogs" style={getLinkStyles}>
+            My Blogs
+          </NavLink>
+        </li>
+      ) : (
+        <>
+          <li>
+            <NavLink to="/register" style={getLinkStyles}>Register</NavLink>
+          </li>
+          <li>
+            <NavLink to="/login" style={getLinkStyles}>Login</NavLink>
+          </li>
+        </>
+      )}
     </>
   );
+
+  const handleLogout = () => {
+        logOut()
+        .then(data=>{
+          toast.success("LogOut Successfully !", {
+            position: "top-center"
+          });
+        })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   return (
     <div className="navbar bg-base-100">
@@ -71,8 +89,18 @@ const Navbar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
-      <div className="navbar-end">
-        <a className="btn">Button</a>
+      <div className="navbar-end space-x-3">
+        {user && (
+          <>
+            <button onClick={handleLogout} className="font-semibold btn bg-orange-400 hover:bg-orange-500 btn-sm">
+              Logout
+            </button>
+            <div className="space-y-2">
+              <img src={user?.photoURL ? user.photoURL : defaultImg} alt="User Profile" className="w-16 rounded-full" />
+              <h2 className="text-center font-semibold">{user?.displayName ? user.displayName : user.email}</h2>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

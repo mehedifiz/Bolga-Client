@@ -3,6 +3,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 /* Custom styles */
 .nav-link {
   @apply text-gray-700 hover:text-blue-500 px-3 py-2 rounded-md text-sm font-medium;

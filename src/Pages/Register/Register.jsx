@@ -1,7 +1,11 @@
 import { Link } from 'react-router-dom';
 import img from '../../assets/login.svg'
+import { useContext } from 'react';
+import { Authcontext } from '../../Auth/Authprovider';
+import { toast } from 'react-toastify';
 
 const Register = () => {
+  const {createUser} = useContext(Authcontext)
 
     const handleRegister = event =>{
         event.preventDefault();
@@ -10,6 +14,19 @@ const Register = () => {
             const email = form.email.value;
             const password = form.password.value;
             const confrimPassword = form.confrimPassword.value;
+
+
+            // create user with email and password 
+            createUser(email ,password)
+            .then(res => {
+              console.log(res.user)
+              toast.success("register Success !", {
+                position: "top-center"
+              });
+            })
+            .catch(err => {
+              console.log(err)
+            })
 
             
 
