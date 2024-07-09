@@ -9,7 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 const Login = () => {
-  const {login}  = useContext(Authcontext)
+  const {login, googleLogin}  = useContext(Authcontext)
 
     const handleLogin = event =>{
         event.preventDefault();
@@ -28,7 +28,21 @@ const Login = () => {
           console.log(err)
         })
 
-    }    
+    }  
+    
+    
+    const handleGogleLogin =()=>{
+      googleLogin()
+      .then(res => {
+        console.log(res.user)
+        toast.success("Login Success !", {
+          position: "top-center"
+        });
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    }
 
 
 
@@ -63,7 +77,7 @@ const Login = () => {
               </div>
             </form>
             <div className='flex items-center justify-center'>
-            <button  className='btn btn-ghost'>Google</button>
+            <button onClick={handleGogleLogin} className='btn btn-ghost'>Google</button>
             <button className='btn btn-ghost'>Github</button>
             </div>
 

@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import Blog from "./Blog";
-import CountUp from 'react-countup';
+import Blogcard from "./Blogcard";
 
 const Blogs = () => {
     const [blogs, setBlogs] = useState([]);
 
     useEffect(() => {
-        fetch('/Blogs.json')
+        fetch('http://localhost:4000/allBloges')
             .then(res => res.json())
             .then(data => {
                 setBlogs(data);
@@ -20,7 +19,7 @@ const Blogs = () => {
 
             <div className="grid grid-cols-1 mx-auto mt-16 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {blogs.map(blog => (
-                    <Blog key={blog.id} blog={blog} />
+                    <Blogcard key={blog._id} blog={blog} />
                 ))}
             </div>
         </div>

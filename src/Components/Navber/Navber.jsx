@@ -95,7 +95,7 @@ const Navbar = () => {
             <button onClick={handleLogout} className="font-semibold btn bg-orange-400 hover:bg-orange-500 btn-sm">
               Logout
             </button>
-            <div className="space-y-2">
+            <div className="flex flex-col items-center">
               <img src={user?.photoURL ? user.photoURL : defaultImg} alt="User Profile" className="w-16 rounded-full" />
               <h2 className="text-center font-semibold">{user?.displayName ? user.displayName : user.email}</h2>
             </div>
