@@ -1,5 +1,5 @@
 
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import img from '../../assets/login.svg'
 import { useContext } from 'react';
 import { Authcontext } from '../../Auth/Authprovider';
@@ -9,8 +9,11 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 const Login = () => {
-  const {login, googleLogin}  = useContext(Authcontext)
 
+  const {login, googleLogin}  = useContext(Authcontext)
+  const location = useLocation()
+  const navigate = useNavigate()
+  
     const handleLogin = event =>{
         event.preventDefault();
         const form = event.target;
@@ -34,10 +37,17 @@ const Login = () => {
     const handleGogleLogin =()=>{
       googleLogin()
       .then(res => {
-        console.log(res.user)
+        navigate(location.state? location.state :  '/')
+
+
+        
         toast.success("Login Success !", {
           position: "top-center"
         });
+
+
+
+
       })
       .catch(err => {
         console.log(err)
