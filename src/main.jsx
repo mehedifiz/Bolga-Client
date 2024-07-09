@@ -14,6 +14,8 @@ import Register from './Pages/Register/Register.jsx';
 import { ToastContainer } from 'react-toastify';
 import Blogpage from './Components/Blogs/Blogpage.jsx';
 import Postblogs from './Pages/Postblog/Postblogs.jsx';
+import Myblogs from './Pages/Myblogs/Myblogs.jsx';
+import Privateroute from './Auth/Private/Privateroute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,11 +33,16 @@ const router = createBrowserRouter([
         element:<Register></Register>
       },{
         path: '/blog/:id',
-        element:<Blogpage></Blogpage>,
+        element:<Privateroute><Blogpage></Blogpage></Privateroute>,
         loader: ({params})=> fetch(`http://localhost:4000/allBloges/${params.id}`)
       },{
         path: '/post-blog',
-        element:<Postblogs></Postblogs>
+        element: <Privateroute><Postblogs></Postblogs></Privateroute>
+      },
+      {
+        path: '/my-blogs',
+        element: <Privateroute> <Myblogs></Myblogs> </Privateroute>,
+        
       }
     ]
      

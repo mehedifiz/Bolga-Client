@@ -1,9 +1,12 @@
 import axios from "axios";
+import { useContext } from "react";
+import { Authcontext } from "../../Auth/Authprovider";
 
 
 
 const Postblogs = () => {
-
+    const {user } = useContext(Authcontext)
+    
 const handleBlogpost =(e)=>{
     e.preventDefault();
     const form = e.target;
@@ -13,9 +16,9 @@ const handleBlogpost =(e)=>{
    const author = form.author.value;
    const date = form.date.value;
     const content = form.content.value;
+    const email= user.email;
 
-
-   const blog = {title ,category , image ,author , date , content}
+   const blog = {title ,category , image ,author , date , content , email}
    console.log(blog)
 
     axios.post('http://localhost:4000/allBloges', blog)
@@ -26,21 +29,6 @@ const handleBlogpost =(e)=>{
     .catch(err =>{
         console.log(err)
     })
-
-
-
-   
-
-
-    
-
-
-
-
-
-
-
-
 
 }
 
