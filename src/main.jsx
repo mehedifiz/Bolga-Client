@@ -13,6 +13,7 @@ import Login from './Pages/Login/Login.jsx';
 import Register from './Pages/Register/Register.jsx';
 import { ToastContainer } from 'react-toastify';
 import Blogpage from './Components/Blogs/Blogpage.jsx';
+import Postblogs from './Pages/Postblog/Postblogs.jsx';
 
 const router = createBrowserRouter([
   {
@@ -32,6 +33,9 @@ const router = createBrowserRouter([
         path: '/blog/:id',
         element:<Blogpage></Blogpage>,
         loader: ({params})=> fetch(`http://localhost:4000/allBloges/${params.id}`)
+      },{
+        path: '/post-blog',
+        element:<Postblogs></Postblogs>
       }
     ]
      
