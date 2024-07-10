@@ -14,8 +14,9 @@ import Register from './Pages/Register/Register.jsx';
 import { ToastContainer } from 'react-toastify';
 import Blogpage from './Components/Blogs/Blogpage.jsx';
 import Postblogs from './Pages/Postblog/Postblogs.jsx';
-import Myblogs from './Pages/Myblogs/Myblogs.jsx';
+
 import Privateroute from './Auth/Private/Privateroute.jsx';
+import Myblogs from './Pages/Myblogs/Myblogs.jsx';
 
 const router = createBrowserRouter([
   {

@@ -4,11 +4,17 @@ import { Navigate, useLocation, useNavigate } from "react-router-dom";
 
 
 const Privateroute = ({children}) => {
-const {user} = useContext(Authcontext)
+const {user , loading} = useContext(Authcontext)
 const location = useLocation()
 console.log(location)
 
+if(loading){
+    return <div>
+        <span className="loading loading-infinity loading-lg"></span>
 
+
+    </div>
+}
 if(user){
     return  children ;
 }
