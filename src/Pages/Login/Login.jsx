@@ -13,7 +13,7 @@ const Login = () => {
   const {login, googleLogin}  = useContext(Authcontext)
   const location = useLocation()
   const navigate = useNavigate()
-  
+  console.log(location)
     const handleLogin = event =>{
         event.preventDefault();
         const form = event.target;

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 const Myblogcard = ({ blog , handleDelete}) => {
     const { title, category, image, author, content, _id  } = blog;
     return ( 
-      <div className="card bg-white  shadow-lg rounded-lg overflow-hidden">
+      <div className="card bg-white sm:w-full md:w-96  lg:w-96  shadow-lg rounded-lg overflow-hidden">
         <img src={image} alt="Blog" className="w-full h-48 object-cover" />
         <div className="p-4">
           <div className="flex justify-between items-center mb-2">
@@ -21,8 +21,7 @@ const Myblogcard = ({ blog , handleDelete}) => {
           </p>
           <div className="flex justify-evenly items-center mt-4">
 
-          <TbEdit className="text-orange-500 hover:text-blue-700 text-4xl" />
-
+          <Link to={`/update-blog/${_id}`} >  <TbEdit className="text-orange-500 hover:text-blue-700 text-4xl" />  </Link>
             <Link to={`/blog/${_id}`} className="text-blue-500 hover:text-blue-700 ">
               <MdOutlineReadMore className="text-5xl" />
             </Link>
