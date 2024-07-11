@@ -23,11 +23,16 @@ const Login = () => {
         login(email , password)
         .then(res => {
           console.log(res.user)
+        navigate(location.state? location.state :  '/')
+
           toast.success("Login Success !", {
             position: "top-center"
           });
         })
         .catch(err => {
+          toast.success("There is an error !", {
+            position: "top-center"
+          });
           console.log(err)
         })
 
@@ -37,6 +42,7 @@ const Login = () => {
     const handleGogleLogin =()=>{
       googleLogin()
       .then(res => {
+
         navigate(location.state? location.state :  '/')
 
 
@@ -50,7 +56,10 @@ const Login = () => {
 
       })
       .catch(err => {
-        console.log(err)
+        toast.error(err.message, {
+          position: "top-center"
+        });
+        console.log(err.message)
       })
     }
 

@@ -25,7 +25,10 @@ const Register = () => {
               });
             })
             .catch(err => {
-              console.log(err)
+              toast.error(err.message, {
+                position: "top-center"
+              });
+              console.log(err.message)
             })
 
             
