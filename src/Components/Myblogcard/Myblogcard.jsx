@@ -1,9 +1,10 @@
+import { CiSquareRemove } from "react-icons/ci";
 import { MdOutlineReadMore } from "react-icons/md";
+import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
-const Myblogcard = ({ blog }) => {
-    const { title, category, image, author, content, _id } = blog;
-
+const Myblogcard = ({ blog , handleDelete}) => {
+    const { title, category, image, author, content, _id  } = blog;
     return ( 
       <div className="card bg-white  shadow-lg rounded-lg overflow-hidden">
         <img src={image} alt="Blog" className="w-full h-48 object-cover" />
@@ -18,10 +19,17 @@ const Myblogcard = ({ blog }) => {
           <p className="text-gray-700 mt-2">
             {content.length > 115 ? `${content.substring(0, 115)}...` : content}
           </p>
-          <div className="flex justify-center mt-4">
-            <Link to={`/blog/${_id}`} className="text-blue-500 hover:text-blue-700">
+          <div className="flex justify-evenly items-center mt-4">
+
+          <TbEdit className="text-orange-500 hover:text-blue-700 text-4xl" />
+
+            <Link to={`/blog/${_id}`} className="text-blue-500 hover:text-blue-700 ">
               <MdOutlineReadMore className="text-5xl" />
             </Link>
+
+
+          <CiSquareRemove className="text-green-600 hover:text-blue-700 text-5xl" onClick={()=> handleDelete(_id)}  />
+
           </div>
         </div>
       </div>

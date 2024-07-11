@@ -13,21 +13,30 @@ const Myblogs = () => {
     axios.get(url).then(data => {
       setMyblog(data.data);
     });
-  }, [url]);
+  }, [myblog]);
 
-  console.log(myblog); // Debugging output
+  const handleDelete =_id=>{
+    console.log(_id)
+    axios.delete(`http://localhost:4000/blogsByEmail/${_id}`)
+    .then(data =>{
+        console.log(data.data)
+    })
+  }
 
-  return (<div>
 
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-4">
-     
-     {myblog.map(blog => (
-       <Myblogcard blog={blog} key={blog._id} />
-     ))}
-   </div>
 
-  </div>
-   
+  return (
+    <div className="p-6">
+      <h2 className="text-2xl font-semibold mb-4">Your Blogs ({myblog.length})</h2>
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
+        {myblog.map(blog => (
+          <Myblogcard blog={blog} 
+          key={blog._id}
+          handleDelete={handleDelete}
+          />
+        ))}
+      </div>
+    </div>
   );
 };
 
