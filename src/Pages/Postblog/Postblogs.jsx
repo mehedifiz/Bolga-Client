@@ -1,6 +1,8 @@
 import axios from "axios";
 import { useContext } from "react";
 import { Authcontext } from "../../Auth/Authprovider";
+import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 
 
@@ -24,7 +26,15 @@ const handleBlogpost =(e)=>{
     axios.post('http://localhost:4000/allBloges', blog)
 
     .then(data =>{
-        console.log(data.data)
+
+
+      Swal.fire({
+        icon: "success",
+        title: "Yay!",
+        text: "Your blog has been posted.",
+        footer: '<a href="/my-blogs">See Your Blogs</a>',
+      });
+
     })
     .catch(err =>{
         console.log(err)

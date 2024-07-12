@@ -3,10 +3,11 @@ import { MdOutlineReadMore } from "react-icons/md";
 import { TbEdit } from "react-icons/tb";
 import { Link } from "react-router-dom";
 
-const Myblogcard = ({ blog , handleDelete}) => {
+const Myblogcard = ({ blog , handleDelete , setMyblog, 
+  myblog}) => {
     const { title, category, image, author, content, _id  } = blog;
     return ( 
-      <div className="card bg-white sm:w-full md:w-96  lg:w-96  shadow-lg rounded-lg overflow-hidden">
+      <div className="card bg-white sm:w-full md:w-[50%]  lg:w-96  shadow-lg rounded-lg overflow-hidden">
         <img src={image} alt="Blog" className="w-full h-48 object-cover" />
         <div className="p-4">
           <div className="flex justify-between items-center mb-2">

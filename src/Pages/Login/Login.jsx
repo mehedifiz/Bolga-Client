@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { Authcontext } from '../../Auth/Authprovider';
 import { toast } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import axios from 'axios';
 
 
 
@@ -22,8 +23,23 @@ const Login = () => {
         // login func call
         login(email , password)
         .then(res => {
-          console.log(res.user)
-        navigate(location.state? location.state :  '/')
+
+          const loggedinUser = res.user;
+
+          const user = {email};
+
+          axios.post('http://localhost:4000/jwt', user,{withCredentials:true})
+            .then(data =>{
+            console.log(data.data)
+        if(data.data.success){
+           navigate(location.state? location.state :  '/')
+
+                }
+            })
+
+
+         .catch(err => console.log(err))
+        // navigate(location.state? location.state :  '/')
 
           toast.success("Login Success !", {
             position: "top-center"

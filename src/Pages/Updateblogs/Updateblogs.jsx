@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 import { Authcontext } from "../../Auth/Authprovider";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 
 const Updateblogs = () => {
@@ -29,7 +30,12 @@ const Updateblogs = () => {
        axios.put(`http://localhost:4000/blogsByEmail/${_id}`, updatedBlog)
 
     .then(data =>{
-        console.log(data.data)
+      Swal.fire({
+        icon: "success",
+        title: "Huuuuee!",
+        text: "Your blog has been updated.",
+       
+      });
     })
     .catch(err =>{
         console.log(err)
